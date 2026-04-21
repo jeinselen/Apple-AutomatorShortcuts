@@ -1,57 +1,52 @@
 # Apple-AutomatorShortcuts
 Assorted Apple Shortcuts to speed up media processing and other tasks, provided as-is.
 
-Many of the shortcuts require specific command line tools to be installed, making them unsuitable for usage outside of tech art environments (and except for special cases, unusable on iOS devices).
+Many of the shortcuts require specific command line tools to be installed, making them unsuitable for usage outside of tech art environments (and may be unusable on iOS devices).
 
 
 
 ## Image and Video shortcuts for MacOS Requirements
 
-### Step 1: Install CLI management (Xcode and MacPorts)
+### Step 1: Install command line installation manager
 
-1. Install Xcode from the Mac App Store
-   - https://apps.apple.com/us/app/xcode/id497799835?mt=12
-2. Accept the Xcode command line license in the Terminal
-   - `sudo xcodebuild -license accept`
-3. Download the MacPorts installer and install
-   - https://www.macports.org/install.php
+#### [Homebrew](https://brew.sh)
 
-You can also use HomeBrew, but while it's super popular among programmers, it may not have the same diversity of tool options. I typically use both, but rely on MacPorts for managing most of my imagery/media centred CLI utilities.
-
-To maintain MacPorts and all of the tools installed by it, you can use the following lines in the Terminal periodically (if everything is working, updates probably don't matter, but I typically keep everything current).
-
-- `sudo port selfupdate`
-  - This updates MacPorts itself and the list of ports (applications that can be installed)
-  - `sudo` is dangerous but necessary…enter your admin password and trust you didn't accidentally type `rm *` or something else truly devastating
-- `sudo port upgrade outdated`
-  - This will update all of the installed ports to the lateste versions available via MacPorts
-- `sudo port reclaim`
-  - This removes the previous versions of programs that have been updated and clears up the build folders
-  - When asked, I don't let it remind me…it's annoying when it pops up EVERY TIME
+#### [Macports](https://www.macports.org/install.php)
 
 
 
-### Step 2: Install Command Line Interfaces
+### Step 2: Install command line tools
 
-- `sudo port install ffmpeg +nonfree`
-  - This installs FFmpeg! Yay! And the [Blender Render Kit extension](https://github.com/jeinselen/Blender-RenderKit) should automatically detect it once installed, so this takes care of multiple toolsets simultaneously
-  - The `+nonfree` modifier adds AAC audio support…probably not necessary, but doesn't hurt to have just in case
-- `sudo port install imagemagick7`
-  - This installs ImageMagick for image processing, but after installation the following lines are needed for it to actually work (and be detected by [Blender Render Kit](https://github.com/jeinselen/Blender-RenderKit) for extending UV map edges after rendering a material node to an image)
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/animate /opt/local/bin/animate`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/compare /opt/local/bin/compare`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/composite /opt/local/bin/composite`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/conjure /opt/local/bin/conjure`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/convert /opt/local/bin/convert`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/display /opt/local/bin/display`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/identify /opt/local/bin/identify`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/import /opt/local/bin/import`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/magick /opt/local/bin/magick`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/mogrify /opt/local/bin/mogrify`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/montage /opt/local/bin/montage`
-  - `sudo ln -s  /opt/local/lib/ImageMagick7/bin/stream /opt/local/bin/stream`
-- `sudo port install gifsicle`
-  - If you ever need to create GIF files from video files…this'll help create the smallest possible files!
+#### Homebrew
+
+- For general media processing:
+  - `brew install ffmpeg-full`
+  - `brew install imagemagick-full`
+- Optional:
+  - `brew install pngpaste`
+  - `brew install gifsicle`
+  - `brew install dcraw`
+  - `brew install exiftool`
+  - `brew install media-info`
+- Utility:
+  - `brew install ossp-uuid`
+
+#### Macports
+
+- For general media processing:
+  - `sudo port install ffmpeg +nonfree`
+  - `sudo port install imagemagick7`
+
+- Optional:
+  - `sudo port install pngpaste`
+  - `sudo port install gifsicle`
+  - `sudo port install dcraw`
+  - `sudo port install exiftool`
+  - `sudo port install mediainfo`
+
+- Utility:
+  - `sudo port install ossp-uuid`
+
 
 
 
@@ -83,7 +78,7 @@ Open up the Shortcuts app (included with MacOS) and import any of the shortcut f
 
 ### Step 4: Enable Shortcuts
 
-Now that you've imported shortcuts, you will probably need to enable them in some way. This is frustratingly not automatic, but not difficult. Just tedious.
+Now that you've imported shortcuts, you will probably need to enable them in some way. This is, frustratingly, a manual process. But not difficult, just tedious.
 
 1. Double-click a shortcut to open it up, navigate to the Info > Details panel, and ensure "Use as Quick Action", "Finder", and "Services Menu" options are checked
    - There's a Shortcuts icon in the menu bar as well, most of the shortcuts include an option to choose a file instead of operating on whatever file(s) were right-clicked on in the Finder…you can turn on "Pin in Menu Bar" if you want a quick way to access shortcuts without ever switching to the Finder
